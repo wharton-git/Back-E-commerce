@@ -31,7 +31,6 @@ class CommandesController extends Controller
             return response()->json(['message' => 'Aucune commande trouvée pour cet utilisateur.'], 404);
         }
 
-        // Construire la structure JSON souhaitée
         $formattedCommands = $commandes->map(function($commande) {
             return [
                 'id' => $commande->id,

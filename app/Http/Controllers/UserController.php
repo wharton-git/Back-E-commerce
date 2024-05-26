@@ -20,7 +20,9 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
+            'login' => 'nullable|string|unique:users',
             'adresse' => 'nullable|string',
+            'adresse_alt' => 'nullable|string',
             'numero_mobile' => 'nullable|string',
             'carte' => 'nullable|string',
             'solde' => 'numeric|nullable',
@@ -30,7 +32,9 @@ class UserController extends Controller
         $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'login' => $request->input('username'),
             'adresse' => $request->input('adresse'),
+            'adresse_alt' => $request->input('adresse_alt'),
             'numero_mobile' => $request->input('numero_mobile'),
             'carte' => $request->input('carte'),
             'solde' => $request->input('solde', 0), 

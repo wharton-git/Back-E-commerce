@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('login')->unique()->nullable();
             $table->string('adresse')->nullable();
+            $table->string('adresse_alt')->nullable();
             $table->string('numero_mobile')->nullable();
             $table->string('carte')->nullable();
             $table->decimal('solde', 10, 2)->default(0);
