@@ -69,4 +69,33 @@ class UserController extends Controller
         // Réponse JSON
         return response()->json(['message' => 'User updated successfully', 'user' => $user], 200);
     }
+
+    public function updateLogin(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'login' => 'required|string|unique:users,login,' . $user->id,
+        ]);
+
+        $user->login = $request->login;
+        $user->save();
+
+        return response()->json(['message' => 'Login updated successfully', 'user' => $user], 200);
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return response()->json(['message' => 'Password updated successfully', 'user' => $user], 200);
+    }
+
 }
