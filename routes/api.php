@@ -46,3 +46,5 @@ Route::get('mostpurchased',[CommandesController::class,'mostPurchased']);
 Route::post('commandes', [CommandesController::class, 'commandeUser']);
 Route::post('commande',[CommandesController::class,'store']);
 Route::post('detailCommande',[CommandesController::class,'storeDetail']);
+
+Route::post('/user/{id}',[UserController::class,'update']);

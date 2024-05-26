@@ -45,4 +45,28 @@ class UserController extends Controller
 
         return response()->json(['message' => 'User created successfully', 'user' => $user], 201);
     }
+
+    public function update(Request $request, $id)
+    {
+        // Récupérer l'utilisateur par ID
+        $user = User::findOrFail($id);
+
+        // Validation des données de la requête
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'numero_mobile' => 'nullable|string',
+        ]);
+
+        // Mise à jour des champs de l'utilisateur
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->numero_mobile = $request->numero_mobile;
+
+        // Sauvegarde de l'utilisateur
+        $user->save();
+
+        // Réponse JSON
+        return response()->json(['message' => 'User updated successfully', 'user' => $user], 200);
+    }
 }
