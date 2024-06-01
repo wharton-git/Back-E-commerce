@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 class UserController extends Controller
@@ -86,16 +88,33 @@ class UserController extends Controller
 
     public function updatePassword(Request $request, $id)
     {
+            $user = User::findOrFail($id);
+
+            $request->validate([
+                'password' => 'required|string|min:6',
+            ]);
+
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return response()->json(['message' => 'Password updated successfully', 'user' => $user], 200);
+    }
+
+
+    public function updateAdresse(Request $request, $id) {
+
         $user = User::findOrFail($id);
 
         $request->validate([
-            'password' => 'required|string|min:6|confirmed',
+            'adresse' => 'nullable|string',
+            'adresse_alt' => 'nullable|string',
         ]);
-
-        $user->password = Hash::make($request->password);
+    
+        $user->adresse = $request->adresse;
+        $user->adresse_alt = $request->adresse_alt;
         $user->save();
-
-        return response()->json(['message' => 'Password updated successfully', 'user' => $user], 200);
+    
+        return response()->json(['message' => 'Adresse updated successfully', 'user' => $user], 200);
     }
 
 }

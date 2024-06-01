@@ -50,3 +50,4 @@ Route::post('detailCommande',[CommandesController::class,'storeDetail']);
 Route::post('/user/{id}',[UserController::class,'update']);
 Route::post('/userLogin/{id}',[UserController::class,'updateLogin']);
 Route::post('/userPassword/{id}',[UserController::class,'updatePassword']);
+Route::post('/userAdresse/{id}',[UserController::class,'updateAdresse']);
