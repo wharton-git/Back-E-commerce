@@ -117,4 +117,17 @@ class UserController extends Controller
         return response()->json(['message' => 'Adresse updated successfully', 'user' => $user], 200);
     }
 
+    public function updateCard(Request $request, $id) {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'carte' => 'nullable|string',
+        ]);
+
+        $user->carte = $request->carte;
+        $user->save();
+        
+        return response()->json(['message' => 'Carte updated successfully', 'user' => $user], 200);
+    }
+
 }
