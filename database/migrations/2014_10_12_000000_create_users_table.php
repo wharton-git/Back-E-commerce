@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('adresse')->nullable();
             $table->string('adresse_alt')->nullable();
             $table->string('numero_mobile')->nullable();
+            $table->string('numero_mobile_2')->nullable();
             $table->string('carte')->nullable();
             $table->decimal('solde', 10, 2)->default(0);
             $table->timestamp('email_verified_at')->nullable();

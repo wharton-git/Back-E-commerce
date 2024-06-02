@@ -130,4 +130,19 @@ class UserController extends Controller
         return response()->json(['message' => 'Carte updated successfully', 'user' => $user], 200);
     }
 
+    public function updatePhone(Request $request, $id) {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'numero_mobile' => 'nullable|string',
+            'numero_mobile_2' => 'nullable|string',
+        ]);
+
+        $user->numero_mobile = $request->numero_mobile;
+        $user->numero_mobile_2 = $request->numero_mobile_2;
+        $user->save();
+        
+        return response()->json(['message' => 'Numero mobile updated successfully', 'user' => $user], 200);
+    }
+
 }
