@@ -53,3 +53,5 @@ Route::post('/userPassword/{id}',[UserController::class,'updatePassword']);
 Route::post('/userAdresse/{id}',[UserController::class,'updateAdresse']);
 Route::post('/userCard/{id}',[UserController::class,'updateCard']);
 Route::post('/userPhone/{id}',[UserController::class,'updatePhone']);
+Route::post('/addSolde/{id}',[UserController::class,'addSolde']);
+Route::post('/subSolde/{id}',[UserController::class,'subSolde']);

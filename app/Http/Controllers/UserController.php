@@ -145,4 +145,37 @@ class UserController extends Controller
         return response()->json(['message' => 'Numero mobile updated successfully', 'user' => $user], 200);
     }
 
+    public function addSolde(Request $request, $id) {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'addSolde' => 'numeric',
+        ]);
+
+        $user->solde = $user->solde + $request->addSolde;
+        $user->save();
+        
+        return response()->json(['message' => 'Solde updated successfully', 'user' => $user], 200);
+    }
+
+    public function subSolde(Request $request, $id) {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'subSolde' => 'numeric',
+        ]);
+
+        $solde = $user->solde;
+        if ($solde < $request->subSolde) {
+            throw ValidationException::withMessages([
+                'subSolde' => 'Solde insuffisant',
+            ]);
+        }
+
+        $user->solde = $user->solde - $request->subSolde;
+        $user->save();
+        
+        return response()->json(['message' => 'Solde updated successfully', 'user' => $user], 200);
+    }
+
 }
