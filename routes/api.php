@@ -55,3 +55,5 @@ Route::post('/userCard/{id}',[UserController::class,'updateCard']);
 Route::post('/userPhone/{id}',[UserController::class,'updatePhone']);
 Route::post('/addSolde/{id}',[UserController::class,'addSolde']);
 Route::post('/subSolde/{id}',[UserController::class,'subSolde']);
+Route::delete('/produit/{id}',[ProduitsController::class,'remove']);
+Route::put('/produit/{id}',[ProduitsController::class,'edit']);

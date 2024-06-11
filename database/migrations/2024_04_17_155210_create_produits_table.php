@@ -18,6 +18,8 @@ return new class extends Migration
             $table->decimal('prix', 10, 2);
             $table->integer('stock');
             $table->string('type');
+            $table->string('couleur', 100)->nullable();
+            $table->integer('reduction')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });
