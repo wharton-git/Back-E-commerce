@@ -57,3 +57,9 @@ Route::post('/addSolde/{id}',[UserController::class,'addSolde']);
 Route::post('/subSolde/{id}',[UserController::class,'subSolde']);
 Route::delete('/produit/{id}',[ProduitsController::class,'remove']);
 Route::put('/produit/{id}',[ProduitsController::class,'edit']);
+
+
+Route::get('getDailyTotalPrices',[CommandesController::class,'getDailyTotalPrices']);
+Route::get('topClients',[CommandesController::class,'topClients']);
+Route::get('topOneClients',[CommandesController::class,'topOneClients']);
+Route::get('topProducts',[CommandesController::class,'topProducts']);
